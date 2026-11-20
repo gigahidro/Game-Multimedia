@@ -1,0 +1,272 @@
+{
+  "program/scripts/game_over.gd": {
+    "mtime": 1794883730.626152,
+    "seen": 1795158077.693576,
+    "ast_hash": "f7017764ca4a497326557a4d958de241",
+    "semantic_hash": "f7017764ca4a497326557a4d958de241"
+  },
+  "program/scripts/global.gd": {
+    "mtime": 1795000678.9486575,
+    "seen": 1795158077.6935902,
+    "ast_hash": "94bb5908595420f72dbccd9e12acbf32",
+    "semantic_hash": "94bb5908595420f72dbccd9e12acbf32"
+  },
+  "program/scripts/home.gd": {
+    "mtime": 1794991496.8909814,
+    "seen": 1795158077.6935966,
+    "ast_hash": "8d9243ff4a9fc63dfa3894a29111a186",
+    "semantic_hash": "8d9243ff4a9fc63dfa3894a29111a186"
+  },
+  "program/scripts/hud.gd": {
+    "mtime": 1794925246.4823842,
+    "seen": 1795158077.6936007,
+    "ast_hash": "3f40ccfea84e6da03fb35bd1f57cd864",
+    "semantic_hash": "3f40ccfea84e6da03fb35bd1f57cd864"
+  },
+  "program/scripts/level_1.gd": {
+    "mtime": 1794993580.566751,
+    "seen": 1795158077.6936045,
+    "ast_hash": "805ccad83e06c7864fbaec6067d05747",
+    "semantic_hash": "805ccad83e06c7864fbaec6067d05747"
+  },
+  "program/scripts/level_2.gd": {
+    "mtime": 1794994008.4695992,
+    "seen": 1795158077.6936073,
+    "ast_hash": "6b924ee2dcf64b26be9f5a4253159275",
+    "semantic_hash": "6b924ee2dcf64b26be9f5a4253159275"
+  },
+  "program/scripts/level_3.gd": {
+    "mtime": 1794994390.430327,
+    "seen": 1795158077.6936111,
+    "ast_hash": "091e8ed2761f737dbc4819c8cc827837",
+    "semantic_hash": "091e8ed2761f737dbc4819c8cc827837"
+  },
+  "program/scripts/level_4.gd": {
+    "mtime": 1794995058.526694,
+    "seen": 1795158077.6936145,
+    "ast_hash": "caf3b0910dcc8d01969422e4fe03ba87",
+    "semantic_hash": "caf3b0910dcc8d01969422e4fe03ba87"
+  },
+  "program/scripts/level_4_card.gd": {
+    "mtime": 1794994470.0151548,
+    "seen": 1795158077.6936176,
+    "ast_hash": "5cd3cbac1e2244aa7aac19aa30dc6b5a",
+    "semantic_hash": "5cd3cbac1e2244aa7aac19aa30dc6b5a"
+  },
+  "program/scripts/level_4_slot.gd": {
+    "mtime": 1794994614.6428082,
+    "seen": 1795158077.693621,
+    "ast_hash": "32633149f544b0081f74f22b5baf7713",
+    "semantic_hash": "32633149f544b0081f74f22b5baf7713"
+  },
+  "program/scripts/main_menu.gd": {
+    "mtime": 1794991244.3263085,
+    "seen": 1795158077.693624,
+    "ast_hash": "46e109d6bade0161f1d13cced68d78c7",
+    "semantic_hash": "46e109d6bade0161f1d13cced68d78c7"
+  },
+  "program/scripts/materi.gd": {
+    "mtime": 1794993281.862384,
+    "seen": 1795158077.6936278,
+    "ast_hash": "c5e362b9edb296a5e3c38952189ea6e7",
+    "semantic_hash": "c5e362b9edb296a5e3c38952189ea6e7"
+  },
+  "program/scripts/sky_item.gd": {
+    "mtime": 1793877715.7461023,
+    "seen": 1795158077.693631,
+    "ast_hash": "917e8265fa93e5a5b4f51d15a4098847",
+    "semantic_hash": "917e8265fa93e5a5b4f51d15a4098847"
+  },
+  "program/scripts/victory.gd": {
+    "mtime": 1794995370.3784513,
+    "seen": 1795158077.693634,
+    "ast_hash": "45df358b4acd36240b8cf6fc6734a4a2",
+    "semantic_hash": "45df358b4acd36240b8cf6fc6734a4a2"
+  },
+  "program/tests/test_audio_system.gd": {
+    "mtime": 1794999335.6623137,
+    "seen": 1795158077.6936371,
+    "ast_hash": "ed23174ca57d5554684e216d85a76ef3",
+    "semantic_hash": "ed23174ca57d5554684e216d85a76ef3"
+  },
+  "program/tests/test_home_scene.gd": {
+    "mtime": 1794985832.362442,
+    "seen": 1795158077.6936402,
+    "ast_hash": "60674579f06921c0ebffdea78b1ae5c3",
+    "semantic_hash": "60674579f06921c0ebffdea78b1ae5c3"
+  },
+  "program/tests/test_hud_scene.gd": {
+    "mtime": 1794925662.0243824,
+    "seen": 1795158077.6936438,
+    "ast_hash": "f8f336df3dcfbef129a3107f2045df57",
+    "semantic_hash": "f8f336df3dcfbef129a3107f2045df57"
+  },
+  "program/tests/test_level_1_scene.gd": {
+    "mtime": 1793178756.84367,
+    "seen": 1795158077.6936471,
+    "ast_hash": "dd3b010e561f02951573f695a869ec9b",
+    "semantic_hash": "dd3b010e561f02951573f695a869ec9b"
+  },
+  "program/tests/test_level_2_scene.gd": {
+    "mtime": 1793178768.2690551,
+    "seen": 1795158077.6936502,
+    "ast_hash": "98dfa1b7b2f6a9fe10e3d4ce33ae718d",
+    "semantic_hash": "98dfa1b7b2f6a9fe10e3d4ce33ae718d"
+  },
+  "program/tests/test_level_3_scene.gd": {
+    "mtime": 1793877885.4464226,
+    "seen": 1795158077.6936533,
+    "ast_hash": "08ec17fcd2bdfbe0414dd8ac95966a6c",
+    "semantic_hash": "08ec17fcd2bdfbe0414dd8ac95966a6c"
+  },
+  "program/tests/test_level_4_scene.gd": {
+    "mtime": 1794884096.7944484,
+    "seen": 1795158077.6936562,
+    "ast_hash": "69b5255dba002a5df3b24189c6a1eb71",
+    "semantic_hash": "69b5255dba002a5df3b24189c6a1eb71"
+  },
+  "program/tests/test_materi_context.gd": {
+    "mtime": 1793107506.1073747,
+    "seen": 1795158077.6936593,
+    "ast_hash": "e48b146689790c88ba739c186b7d1590",
+    "semantic_hash": "e48b146689790c88ba739c186b7d1590"
+  },
+  "program/tests/test_materi_scene.gd": {
+    "mtime": 1792554061.7355049,
+    "seen": 1795158077.6936636,
+    "ast_hash": "b865493871c8d6f97a62af270d2281b3",
+    "semantic_hash": "b865493871c8d6f97a62af270d2281b3"
+  },
+  "program/tests/test_victory_gameover.gd": {
+    "mtime": 1794931301.893783,
+    "seen": 1795158077.6936665,
+    "ast_hash": "af8d032faf40c7c3311aeb0f03eb50f5",
+    "semantic_hash": "af8d032faf40c7c3311aeb0f03eb50f5"
+  },
+  "HANDOVER_SESSION.md": {
+    "mtime": 1795000721.5684173,
+    "seen": 1795158077.6936696,
+    "ast_hash": "b19401f2db01717159038493cefc8226",
+    "semantic_hash": "b19401f2db01717159038493cefc8226"
+  },
+  "DAFTAR_ASET.md": {
+    "mtime": 1791901091.0043395,
+    "seen": 1795158077.6936727,
+    "ast_hash": "99225de12ff285faebb08e3d5c6047b3",
+    "semantic_hash": "99225de12ff285faebb08e3d5c6047b3"
+  },
+  "program/project.godot": {
+    "mtime": 1794997704.1118205,
+    "seen": 1795158077.693676,
+    "ast_hash": "194c8da21eafb3191332f875f6a14742",
+    "semantic_hash": "194c8da21eafb3191332f875f6a14742"
+  },
+  "Kelompok 14B Template Rencana Media Prak Multimedia 2 - 2026 .docx.pdf": {
+    "mtime": 1790667669.2312136,
+    "seen": 1795158077.6936793,
+    "ast_hash": "24c52be77cda2b1c4642e870dfeb4ba6",
+    "semantic_hash": "24c52be77cda2b1c4642e870dfeb4ba6"
+  },
+  "program/assets/sounds/hujan_sound_baru.mp3": {
+    "mtime": 1795000305.1426282,
+    "seen": 1795158077.6936827,
+    "ast_hash": "d20fe2ea2664d5b84eb22691a095136e",
+    "semantic_hash": "d20fe2ea2664d5b84eb22691a095136e"
+  },
+  "program/assets/sounds/musik_level.mp3": {
+    "mtime": 1794990240.0860639,
+    "seen": 1795158077.6936858,
+    "ast_hash": "1386784e9182a8cf0a98964d06cff4bd",
+    "semantic_hash": "1386784e9182a8cf0a98964d06cff4bd"
+  },
+  "program/assets/sounds/musik_level.wav": {
+    "mtime": 1794883488.0016026,
+    "seen": 1795158077.6936889,
+    "ast_hash": "267e38c557e1f01c600991a7165255a1",
+    "semantic_hash": "267e38c557e1f01c600991a7165255a1"
+  },
+  "program/assets/sounds/musik_menu.wav": {
+    "mtime": 1794883487.964641,
+    "seen": 1795158077.693692,
+    "ast_hash": "5f13543d1db23ae0b2f7342b930d803a",
+    "semantic_hash": "5f13543d1db23ae0b2f7342b930d803a"
+  },
+  "program/assets/sounds/musik_utama.mp3": {
+    "mtime": 1794990240.0845604,
+    "seen": 1795158077.6936953,
+    "ast_hash": "02f5678a5feedcea77ac7a3607232e6d",
+    "semantic_hash": "02f5678a5feedcea77ac7a3607232e6d"
+  },
+  "program/assets/sounds/musik_victory.wav": {
+    "mtime": 1794991000.3494744,
+    "seen": 1795158077.6936984,
+    "ast_hash": "6ecbea7cbdca1271568305d4f10c89a8",
+    "semantic_hash": "6ecbea7cbdca1271568305d4f10c89a8"
+  },
+  "program/assets/sounds/sfx_berhasil.wav": {
+    "mtime": 1794883487.811845,
+    "seen": 1795158077.6937013,
+    "ast_hash": "a296d68cac84d3d2a7cd76716e68979d",
+    "semantic_hash": "a296d68cac84d3d2a7cd76716e68979d"
+  },
+  "program/assets/sounds/sfx_bubble.wav": {
+    "mtime": 1794990934.8087802,
+    "seen": 1795158077.6937046,
+    "ast_hash": "79945d58b84b08a0621ebb4a12e6ae24",
+    "semantic_hash": "79945d58b84b08a0621ebb4a12e6ae24"
+  },
+  "program/assets/sounds/sfx_card_grab.wav": {
+    "mtime": 1794990935.6859615,
+    "seen": 1795158077.6937077,
+    "ast_hash": "0fda270f5f0e670a0a1d8cdf41b76d76",
+    "semantic_hash": "0fda270f5f0e670a0a1d8cdf41b76d76"
+  },
+  "program/assets/sounds/sfx_card_snap.wav": {
+    "mtime": 1794990935.683568,
+    "seen": 1795158077.693711,
+    "ast_hash": "0efa3e554394f5e93d7aeb66c9e334c9",
+    "semantic_hash": "0efa3e554394f5e93d7aeb66c9e334c9"
+  },
+  "program/assets/sounds/sfx_gagal.wav": {
+    "mtime": 1794883487.8170376,
+    "seen": 1795158077.6937144,
+    "ast_hash": "08d09be36598ee244ab7d7c0d110c1f4",
+    "semantic_hash": "08d09be36598ee244ab7d7c0d110c1f4"
+  },
+  "program/assets/sounds/sfx_guntur.wav": {
+    "mtime": 1794990935.7857938,
+    "seen": 1795158077.6937175,
+    "ast_hash": "cc3ea1ca2a5112b605051f0534661e2e",
+    "semantic_hash": "cc3ea1ca2a5112b605051f0534661e2e"
+  },
+  "program/assets/sounds/sfx_hujan.wav": {
+    "mtime": 1794883487.9295464,
+    "seen": 1795158077.693721,
+    "ast_hash": "30a2e679bed90bad1fcc83f771c47031",
+    "semantic_hash": "30a2e679bed90bad1fcc83f771c47031"
+  },
+  "program/assets/sounds/sfx_klik.wav": {
+    "mtime": 1794883487.7980597,
+    "seen": 1795158077.6937242,
+    "ast_hash": "42d4b06e802aa842d8cd7d429fcf30aa",
+    "semantic_hash": "42d4b06e802aa842d8cd7d429fcf30aa"
+  },
+  "program/assets/sounds/sfx_level_selesai.wav": {
+    "mtime": 1794883487.8508103,
+    "seen": 1795158077.6937275,
+    "ast_hash": "7d2e514673a4ed11e1009612ec4a6f6e",
+    "semantic_hash": "7d2e514673a4ed11e1009612ec4a6f6e"
+  },
+  "program/assets/sounds/sfx_siang.wav": {
+    "mtime": 1794990935.8045642,
+    "seen": 1795158077.6937506,
+    "ast_hash": "53e473bcbb0405d9b0c04ef480ec95d4",
+    "semantic_hash": "53e473bcbb0405d9b0c04ef480ec95d4"
+  },
+  "program/assets/sounds/sfx_tick.wav": {
+    "mtime": 1794990935.8055692,
+    "seen": 1795158077.693754,
+    "ast_hash": "0d27a68cc4228005ce10d5d8287c4cae",
+    "semantic_hash": "0d27a68cc4228005ce10d5d8287c4cae"
+  }
+}

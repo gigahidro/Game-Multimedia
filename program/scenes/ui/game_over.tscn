@@ -1,0 +1,171 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_over"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background/bg_gameover.png" id="2_bg"]
+
+[sub_resource type="Gradient" id="Gradient_rain"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(0.7, 0.85, 1, 0, 0.7, 0.85, 1, 0.6, 0.7, 0.85, 1, 0.6, 0.7, 0.85, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 30.0
+content_margin_top = 20.0
+content_margin_right = 30.0
+content_margin_bottom = 20.0
+bg_color = Color(0.1, 0.14, 0.22, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.35, 0.35, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.02, 0.04, 0.08, 0.5)
+shadow_size = 10
+shadow_offset = Vector2(0, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_retry"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.88, 0.38, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.65, 0.22, 0.12, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_menu"]
+content_margin_left = 24.0
+content_margin_top = 10.0
+content_margin_right = 24.0
+content_margin_bottom = 10.0
+bg_color = Color(0.25, 0.45, 0.65, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 4
+border_color = Color(0.15, 0.3, 0.45, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_over")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="RainParticles" type="CPUParticles2D" parent="."]
+position = Vector2(640, -10)
+amount = 40
+lifetime = 1.8
+preprocess = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(640, 5)
+gravity = Vector2(-20, 500)
+initial_velocity_min = 60.0
+initial_velocity_max = 120.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_rain")
+
+[node name="CenterBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -180.0
+offset_right = 300.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LblTitle" type="Label" parent="CenterBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.35, 0.35, 1)
+theme_override_colors/font_outline_color = Color(0.3, 0.05, 0.05, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 42
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="CardPanel" type="PanelContainer" parent="CenterBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="InnerVBox" type="VBoxContainer" parent="CenterBox/CardPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="LblDesc" type="Label" parent="CenterBox/CardPanel/InnerVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.92, 0.96, 1)
+theme_override_font_sizes/font_size = 16
+text = "Nyawa kamu habis! Coba lagi dan perhatikan instruksi tahapan siklus air."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="LblScore" type="Label" parent="CenterBox/CardPanel/InnerVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.15, 0.22, 0.9)
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 20
+text = "Skor Akhir: 0"
+horizontal_alignment = 1
+
+[node name="Buttons" type="HBoxContainer" parent="CenterBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BtnRetry" type="Button" parent="CenterBox/Buttons"]
+custom_minimum_size = Vector2(170, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_retry")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_retry")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_retry")
+text = "Ulangi Game"
+
+[node name="BtnMenu" type="Button" parent="CenterBox/Buttons"]
+custom_minimum_size = Vector2(170, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_menu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_menu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_menu")
+text = "Menu Utama"
+
+[connection signal="pressed" from="CenterBox/Buttons/BtnRetry" to="." method="_on_btn_retry_pressed"]
+[connection signal="pressed" from="CenterBox/Buttons/BtnMenu" to="." method="_on_btn_menu_pressed"]

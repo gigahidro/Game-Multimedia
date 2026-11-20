@@ -1,0 +1,216 @@
+[gd_scene load_steps=16 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_2.gd" id="1_lvl2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background/bg_level2_kondensasi.jpg" id="3_bg"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/awan1.png" id="4_awan1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/label_level2.png" id="7_lbl_lvl2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/panduan_teks_level2.png" id="8_panduan"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/kartu_panel_suhu.png" id="9_card_suhu"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/knop_kuning_pengatur_suhu.png" id="10_knob_kuning"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/knop_biru_pengatur_suhu.png" id="11_knob_biru"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_next.png" id="12_btn_next"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_bg"]
+content_margin_top = 13.0
+content_margin_bottom = 13.0
+bg_color = Color(0.82, 0.87, 0.93, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.65, 0.74, 0.84, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_fill"]
+content_margin_top = 13.0
+content_margin_bottom = 13.0
+bg_color = Color(0.2, 0.65, 0.95, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 3
+border_color = Color(0.1, 0.4, 0.7, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.12, 0.18, 0.25, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.45, 0.65, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.2, 0.85, 0.5, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 1.0, 0.7, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Level2Kondensasi" type="Node2D"]
+script = ExtResource("1_lvl2")
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Clouds" type="Node2D" parent="."]
+
+[node name="Awan1" type="TextureRect" parent="Clouds"]
+modulate = Color(1, 1, 1, 0.15)
+offset_left = 405.0
+offset_top = 220.0
+offset_right = 875.0
+offset_bottom = 460.0
+pivot_offset = Vector2(235, 120)
+texture = ExtResource("4_awan1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Vapors" type="Node2D" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="HeaderTitle" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 10.0
+offset_right = 900.0
+offset_bottom = 85.0
+texture = ExtResource("7_lbl_lvl2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Panduan" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 330.0
+offset_top = 90.0
+offset_right = 950.0
+offset_bottom = 205.0
+texture = ExtResource("8_panduan")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelSuhuCard" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 930.0
+offset_top = 130.0
+offset_right = 1250.0
+offset_bottom = 365.0
+texture = ExtResource("9_card_suhu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LblCardTitle" type="Label" parent="UI/PanelSuhuCard"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 45.0
+offset_right = 295.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.12, 0.28, 0.52, 1)
+theme_override_font_sizes/font_size = 22
+text = "Suhu Atmosfer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SliderSuhu" type="HSlider" parent="UI/PanelSuhuCard"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 110.0
+offset_right = 295.0
+offset_bottom = 155.0
+theme_override_icons/grabber = ExtResource("10_knob_kuning")
+theme_override_icons/grabber_highlight = ExtResource("10_knob_kuning")
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider_bg")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_slider_fill")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_slider_fill")
+min_value = -5.0
+max_value = 40.0
+value = 35.0
+
+[node name="LblSuhuVal" type="Label" parent="UI/PanelSuhuCard"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 162.0
+offset_right = 295.0
+offset_bottom = 192.0
+theme_override_colors/font_color = Color(0.1, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 20
+text = "35 °C (Hangat)"
+horizontal_alignment = 1
+
+[node name="ProgressContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -105.0
+offset_right = 280.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="LblStatus" type="Label" parent="UI/ProgressContainer"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 18
+text = "Suhu masih hangat (35°C). Kenali polanya: turunkan suhu!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/ProgressContainer"]
+custom_minimum_size = Vector2(520, 26)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+show_percentage = true
+
+[node name="BtnNext" type="TextureButton" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 1102.0
+offset_top = 628.0
+offset_right = 1250.0
+offset_bottom = 700.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("12_btn_next")
+texture_pressed = ExtResource("12_btn_next")
+texture_hover = ExtResource("12_btn_next")
+
+[connection signal="value_changed" from="UI/PanelSuhuCard/SliderSuhu" to="." method="_on_slider_suhu_value_changed"]
+[connection signal="pressed" from="UI/BtnNext" to="." method="_on_btn_next_pressed"]

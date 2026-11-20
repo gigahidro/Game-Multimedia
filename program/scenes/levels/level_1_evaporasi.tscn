@@ -1,0 +1,319 @@
+[gd_scene load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_1.gd" id="1_lvl1"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background/bg_level1_malam.png" id="3_bg_malam"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background/bg_level1_siang.png" id="4_bg_siang"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/bulan.png" id="5_bulan"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/matahari_asli.png" id="6_matahari"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/panduan_teks_malam.png" id="7_panduan_malam"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/panduan_teks_siang.png" id="8_panduan_siang"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_transisi_siang.png" id="9_btn_siang"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/kartu_panel_suhu.png" id="10_card_suhu"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/knop_kuning_pengatur_suhu.png" id="11_knob_suhu"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/partikel_uap.png" id="12_uap"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/label_level1.png" id="13_lbl_lvl1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_next.png" id="14_btn_next"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/panah_uap.png" id="15_panah_sheet"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_anim"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_uap"]
+offsets = PackedFloat32Array(0, 0.15, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.88, 1, 1, 1, 0.75, 1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_bg"]
+content_margin_top = 13.0
+content_margin_bottom = 13.0
+bg_color = Color(0.82, 0.87, 0.93, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.65, 0.74, 0.84, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_fill"]
+content_margin_top = 13.0
+content_margin_bottom = 13.0
+bg_color = Color(0.976471, 0.596078, 0.121569, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 3
+border_color = Color(0.8, 0.45, 0.08, 1)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.12, 0.18, 0.25, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.45, 0.65, 0.9)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.2, 0.85, 0.5, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.4, 1.0, 0.7, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Level1Evaporasi" type="Node2D"]
+script = ExtResource("1_lvl1")
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
+
+[node name="Backgrounds" type="CanvasGroup" parent="."]
+
+[node name="BgMalam" type="TextureRect" parent="Backgrounds"]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("3_bg_malam")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgSiang" type="TextureRect" parent="Backgrounds"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("4_bg_siang")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Celestial" type="Node2D" parent="."]
+
+[node name="Bulan" type="TextureRect" parent="Celestial"]
+offset_left = 142.0
+offset_top = 92.0
+offset_right = 332.0
+offset_bottom = 282.0
+texture = ExtResource("5_bulan")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Matahari" type="TextureRect" parent="Celestial"]
+modulate = Color(1, 1, 1, 0)
+offset_left = 120.0
+offset_top = 70.0
+offset_right = 355.0
+offset_bottom = 305.0
+pivot_offset = Vector2(117.5, 117.5)
+texture = ExtResource("6_matahari")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="UapLaut" type="CPUParticles2D" parent="Particles"]
+material = SubResource("CanvasItemMaterial_anim")
+position = Vector2(880, 560)
+emitting = false
+amount = 6
+lifetime = 2.6
+texture = ExtResource("15_panah_sheet")
+emission_shape = 3
+emission_rect_extents = Vector2(280, 15)
+direction = Vector2(0, -1)
+spread = 4.0
+gravity = Vector2(0, -45)
+initial_velocity_min = 35.0
+initial_velocity_max = 60.0
+scale_amount_min = 0.55
+scale_amount_max = 0.65
+color = Color(0.88, 0.96, 1, 1)
+color_ramp = SubResource("Gradient_uap")
+anim_speed_min = 1.2
+anim_speed_max = 1.6
+anim_offset_max = 1.0
+
+[node name="UapPohon" type="CPUParticles2D" parent="Particles"]
+material = SubResource("CanvasItemMaterial_anim")
+position = Vector2(250, 480)
+emitting = false
+amount = 4
+lifetime = 2.4
+texture = ExtResource("15_panah_sheet")
+emission_shape = 3
+emission_rect_extents = Vector2(130, 15)
+direction = Vector2(0, -1)
+spread = 4.0
+gravity = Vector2(4, -40)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 0.42
+scale_amount_max = 0.5
+color = Color(0.9, 1, 0.9, 1)
+color_ramp = SubResource("Gradient_uap")
+anim_speed_min = 1.2
+anim_speed_max = 1.6
+anim_offset_max = 1.0
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="HeaderTitle" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 10.0
+offset_right = 940.0
+offset_bottom = 85.0
+texture = ExtResource("13_lbl_lvl1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanduanMalam" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 90.0
+offset_right = 890.0
+offset_bottom = 205.0
+texture = ExtResource("7_panduan_malam")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanduanSiang" type="TextureRect" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 390.0
+offset_top = 90.0
+offset_right = 890.0
+offset_bottom = 205.0
+texture = ExtResource("8_panduan_siang")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelSuhuCard" type="TextureRect" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 930.0
+offset_top = 130.0
+offset_right = 1250.0
+offset_bottom = 365.0
+texture = ExtResource("10_card_suhu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LblCardTitle" type="Label" parent="UI/PanelSuhuCard"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 45.0
+offset_right = 295.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0.12, 0.28, 0.52, 1)
+theme_override_font_sizes/font_size = 22
+text = "Intensitas Matahari"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SliderSuhu" type="HSlider" parent="UI/PanelSuhuCard"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 110.0
+offset_right = 295.0
+offset_bottom = 155.0
+theme_override_icons/grabber = ExtResource("11_knob_suhu")
+theme_override_icons/grabber_highlight = ExtResource("11_knob_suhu")
+theme_override_styles/slider = SubResource("StyleBoxFlat_slider_bg")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_slider_fill")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_slider_fill")
+min_value = 10.0
+max_value = 70.0
+value = 20.0
+
+[node name="LblSuhuVal" type="Label" parent="UI/PanelSuhuCard"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 162.0
+offset_right = 295.0
+offset_bottom = 192.0
+theme_override_colors/font_color = Color(0.1, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 20
+text = "20 °C (Dingin)"
+horizontal_alignment = 1
+
+[node name="ProgressContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -105.0
+offset_right = 280.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="LblStatus" type="Label" parent="UI/ProgressContainer"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 18
+text = "Malam hari: Belum ada penguapan air."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/ProgressContainer"]
+custom_minimum_size = Vector2(520, 26)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+show_percentage = true
+
+[node name="BtnTransisiSiang" type="TextureButton" parent="UI"]
+layout_mode = 0
+offset_left = 1082.0
+offset_top = 628.0
+offset_right = 1250.0
+offset_bottom = 700.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("9_btn_siang")
+texture_pressed = ExtResource("9_btn_siang")
+texture_hover = ExtResource("9_btn_siang")
+
+[node name="BtnNext" type="TextureButton" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 1102.0
+offset_top = 628.0
+offset_right = 1250.0
+offset_bottom = 700.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("14_btn_next")
+texture_pressed = ExtResource("14_btn_next")
+texture_hover = ExtResource("14_btn_next")
+
+[connection signal="value_changed" from="UI/PanelSuhuCard/SliderSuhu" to="." method="_on_slider_suhu_value_changed"]
+[connection signal="pressed" from="UI/BtnTransisiSiang" to="." method="_on_btn_transisi_siang_pressed"]
+[connection signal="pressed" from="UI/BtnNext" to="." method="_on_btn_next_pressed"]

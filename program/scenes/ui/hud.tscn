@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_sound_orange.png" id="2_sound"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_sound_x_orange.png" id="3_soundx"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_home.png" id="4_home"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_materi.png" id="5_materi"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="TopRightControls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -100.0
+offset_bottom = 100.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="BtnSoundOrange" type="TextureButton" parent="TopRightControls"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 18.0
+offset_right = 80.0
+offset_bottom = 83.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("2_sound")
+texture_pressed = ExtResource("2_sound")
+texture_hover = ExtResource("2_sound")
+
+[node name="BtnSoundXOrange" type="TextureButton" parent="TopRightControls"]
+visible = false
+layout_mode = 0
+offset_left = 15.0
+offset_top = 18.0
+offset_right = 80.0
+offset_bottom = 83.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("3_soundx")
+texture_pressed = ExtResource("3_soundx")
+texture_hover = ExtResource("3_soundx")
+
+[node name="BottomLeftControls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -92.0
+offset_right = 360.0
+offset_bottom = -20.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="BtnHome" type="TextureButton" parent="BottomLeftControls"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 0.0
+offset_right = 175.0
+offset_bottom = 72.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("4_home")
+texture_pressed = ExtResource("4_home")
+texture_hover = ExtResource("4_home")
+
+[node name="BtnMateri" type="TextureButton" parent="BottomLeftControls"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 0.0
+offset_right = 344.0
+offset_bottom = 72.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("5_materi")
+texture_pressed = ExtResource("5_materi")
+texture_hover = ExtResource("5_materi")
+
+[connection signal="pressed" from="TopRightControls/BtnSoundOrange" to="." method="_on_btn_sound_orange_pressed"]
+[connection signal="pressed" from="TopRightControls/BtnSoundXOrange" to="." method="_on_btn_sound_x_orange_pressed"]
+[connection signal="pressed" from="BottomLeftControls/BtnHome" to="." method="_on_btn_home_pressed"]
+[connection signal="pressed" from="BottomLeftControls/BtnMateri" to="." method="_on_btn_materi_pressed"]

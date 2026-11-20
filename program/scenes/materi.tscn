@@ -1,0 +1,112 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/materi.gd" id="1_materi"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background/bg_materi_evaporasi&transpirasi.png" id="2_bg_default"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_home.png" id="3_home"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_back.png" id="4_back"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_next.png" id="5_next"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_close.png" id="6_close"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_sound_orange.png" id="7_sound"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_sound_x_orange.png" id="8_soundx"]
+
+[node name="Materi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_materi")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg_default")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BtnHome" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 628.0
+offset_right = 175.0
+offset_bottom = 700.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("3_home")
+texture_pressed = ExtResource("3_home")
+texture_hover = ExtResource("3_home")
+
+[node name="BtnBack" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 195.0
+offset_top = 628.0
+offset_right = 345.0
+offset_bottom = 700.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("4_back")
+texture_pressed = ExtResource("4_back")
+texture_hover = ExtResource("4_back")
+
+[node name="BtnNext" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 628.0
+offset_right = 1260.0
+offset_bottom = 700.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("5_next")
+texture_pressed = ExtResource("5_next")
+texture_hover = ExtResource("5_next")
+
+[node name="BtnClose" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1112.0
+offset_top = 628.0
+offset_right = 1260.0
+offset_bottom = 700.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("6_close")
+texture_pressed = ExtResource("6_close")
+texture_hover = ExtResource("6_close")
+
+[node name="BtnSoundOrange" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1180.0
+offset_top = 20.0
+offset_right = 1255.0
+offset_bottom = 95.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("7_sound")
+texture_pressed = ExtResource("7_sound")
+texture_hover = ExtResource("7_sound")
+
+[node name="BtnSoundXOrange" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1180.0
+offset_top = 20.0
+offset_right = 1255.0
+offset_bottom = 95.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("8_soundx")
+texture_pressed = ExtResource("8_soundx")
+texture_hover = ExtResource("8_soundx")
+
+[connection signal="pressed" from="BtnHome" to="." method="_on_btn_home_pressed"]
+[connection signal="pressed" from="BtnBack" to="." method="_on_btn_back_pressed"]
+[connection signal="pressed" from="BtnNext" to="." method="_on_btn_next_pressed"]
+[connection signal="pressed" from="BtnClose" to="." method="_on_btn_close_pressed"]
+[connection signal="pressed" from="BtnSoundOrange" to="." method="_on_btn_sound_pressed"]
+[connection signal="pressed" from="BtnSoundXOrange" to="." method="_on_btn_sound_x_pressed"]

@@ -1,0 +1,347 @@
+[gd_scene load_steps=20 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_3.gd" id="1_lvl3"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background/bg_level3.png" id="3_bg"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/awal_hitam.png" id="4_cloud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/efek_hujan.png" id="5_rain"]
+[ext_resource type="Shader" path="res://assets/shaders/rain.gdshader" id="6_rain_shader"]
+[ext_resource type="Script" path="res://scripts/sky_item.gd" id="7_item"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/tetesan_air.png" id="8_water"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/daun.png" id="9_leaf"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/layangan.png" id="10_kite"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/label_level3.png" id="11_lbl_lvl3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/panduan_teks_level3.png" id="12_panduan"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/kartu_indikator_air.png" id="13_panel"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_next.png" id="14_btn_next"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rain_back"]
+shader = ExtResource("6_rain_shader")
+shader_parameter/speed = 4.2
+shader_parameter/slant = -0.06
+shader_parameter/density = 1.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rain_front"]
+shader = ExtResource("6_rain_shader")
+shader_parameter/speed = 5.8
+shader_parameter/slant = -0.08
+shader_parameter/density = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_water"]
+radius = 38.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_leaf"]
+size = Vector2(70, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kite"]
+size = Vector2(80, 95)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
+bg_color = Color(0.82, 0.9, 0.98, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6, 0.78, 0.94, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
+bg_color = Color(0.18, 0.72, 0.96, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.45, 0.88, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Level3Presipitasi" type="Node2D"]
+script = ExtResource("1_lvl3")
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("3_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Cloud" type="Node2D" parent="."]
+position = Vector2(640, 205)
+
+[node name="Rain" type="Node2D" parent="Cloud"]
+visible = false
+
+[node name="RainBack" type="Sprite2D" parent="Cloud/Rain"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_rain_back")
+position = Vector2(0, 280)
+scale = Vector2(2.4, 1.05)
+texture = ExtResource("5_rain")
+
+[node name="RainFront" type="Sprite2D" parent="Cloud/Rain"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_rain_front")
+position = Vector2(0, 280)
+scale = Vector2(2.5, 1.05)
+texture = ExtResource("5_rain")
+
+[node name="RainDrops" type="CPUParticles2D" parent="Cloud/Rain"]
+position = Vector2(0, 80)
+emitting = false
+amount = 50
+lifetime = 0.75
+texture = ExtResource("8_water")
+emission_shape = 3
+emission_rect_extents = Vector2(460, 15)
+direction = Vector2(-0.06, 1)
+spread = 4.0
+gravity = Vector2(0, 850)
+initial_velocity_min = 550.0
+initial_velocity_max = 780.0
+scale_amount_min = 0.14
+scale_amount_max = 0.28
+color = Color(0.85, 0.95, 1, 0.85)
+
+[node name="SplashParticles" type="CPUParticles2D" parent="Cloud/Rain"]
+position = Vector2(0, 500)
+emitting = false
+amount = 65
+lifetime = 0.55
+emission_shape = 3
+emission_rect_extents = Vector2(480, 10)
+direction = Vector2(0, -1)
+spread = 65.0
+gravity = Vector2(0, 450)
+initial_velocity_min = 80.0
+initial_velocity_max = 160.0
+scale_amount_min = 3.5
+scale_amount_max = 7.0
+color = Color(0.8, 0.95, 1, 0.85)
+
+[node name="Visual" type="Sprite2D" parent="Cloud"]
+scale = Vector2(0.58, 0.58)
+texture = ExtResource("4_cloud")
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Water1" type="Area2D" parent="Items"]
+position = Vector2(240, 360)
+script = ExtResource("7_item")
+is_water = true
+item_name = "Tetesan Air"
+
+[node name="Sprite" type="Sprite2D" parent="Items/Water1"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("8_water")
+
+[node name="Shape" type="CollisionShape2D" parent="Items/Water1"]
+shape = SubResource("CircleShape2D_water")
+
+[node name="Water2" type="Area2D" parent="Items"]
+position = Vector2(440, 470)
+script = ExtResource("7_item")
+is_water = true
+item_name = "Tetesan Air"
+
+[node name="Sprite" type="Sprite2D" parent="Items/Water2"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("8_water")
+
+[node name="Shape" type="CollisionShape2D" parent="Items/Water2"]
+shape = SubResource("CircleShape2D_water")
+
+[node name="Water3" type="Area2D" parent="Items"]
+position = Vector2(680, 390)
+script = ExtResource("7_item")
+is_water = true
+item_name = "Tetesan Air"
+
+[node name="Sprite" type="Sprite2D" parent="Items/Water3"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("8_water")
+
+[node name="Shape" type="CollisionShape2D" parent="Items/Water3"]
+shape = SubResource("CircleShape2D_water")
+
+[node name="Water4" type="Area2D" parent="Items"]
+position = Vector2(880, 480)
+script = ExtResource("7_item")
+is_water = true
+item_name = "Tetesan Air"
+
+[node name="Sprite" type="Sprite2D" parent="Items/Water4"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("8_water")
+
+[node name="Shape" type="CollisionShape2D" parent="Items/Water4"]
+shape = SubResource("CircleShape2D_water")
+
+[node name="Water5" type="Area2D" parent="Items"]
+position = Vector2(1050, 360)
+script = ExtResource("7_item")
+is_water = true
+item_name = "Tetesan Air"
+
+[node name="Sprite" type="Sprite2D" parent="Items/Water5"]
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("8_water")
+
+[node name="Shape" type="CollisionShape2D" parent="Items/Water5"]
+shape = SubResource("CircleShape2D_water")
+
+[node name="DistractorLeaf1" type="Area2D" parent="Items"]
+position = Vector2(340, 460)
+rotation = -0.25
+script = ExtResource("7_item")
+is_water = false
+item_name = "Daun"
+
+[node name="Sprite" type="Sprite2D" parent="Items/DistractorLeaf1"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("9_leaf")
+
+[node name="Shape" type="CollisionShape2D" parent="Items/DistractorLeaf1"]
+shape = SubResource("RectangleShape2D_leaf")
+
+[node name="DistractorLeaf2" type="Area2D" parent="Items"]
+position = Vector2(570, 480)
+rotation = 0.35
+script = ExtResource("7_item")
+is_water = false
+item_name = "Daun"
+
+[node name="Sprite" type="Sprite2D" parent="Items/DistractorLeaf2"]
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("9_leaf")
+
+[node name="Shape" type="CollisionShape2D" parent="Items/DistractorLeaf2"]
+shape = SubResource("RectangleShape2D_leaf")
+
+[node name="DistractorKite" type="Area2D" parent="Items"]
+position = Vector2(800, 360)
+rotation = -0.12
+script = ExtResource("7_item")
+is_water = false
+item_name = "Layangan"
+
+[node name="Sprite" type="Sprite2D" parent="Items/DistractorKite"]
+scale = Vector2(0.42, 0.42)
+texture = ExtResource("10_kite")
+
+[node name="Shape" type="CollisionShape2D" parent="Items/DistractorKite"]
+shape = SubResource("RectangleShape2D_kite")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+
+[node name="HeaderTitle" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 10.0
+offset_right = 900.0
+offset_bottom = 85.0
+texture = ExtResource("11_lbl_lvl3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Panduan" type="TextureRect" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 280.0
+offset_top = 88.0
+offset_right = 1000.0
+offset_bottom = 178.0
+texture = ExtResource("12_panduan")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PanelInfo" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 588.0
+offset_right = 925.0
+offset_bottom = 700.0
+pivot_offset = Vector2(285, 56)
+texture = ExtResource("13_panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="IconDroplet" type="TextureRect" parent="UI/PanelInfo"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 60.0
+offset_bottom = 50.0
+texture = ExtResource("8_water")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LblCollected" type="Label" parent="UI/PanelInfo"]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 12.0
+offset_right = 245.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.1, 0.25, 0.5, 1)
+theme_override_font_sizes/font_size = 22
+text = "Uap Air: 0 / 5"
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/PanelInfo"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 18.0
+offset_right = 548.0
+offset_bottom = 42.0
+theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
+max_value = 5.0
+step = 0.1
+show_percentage = false
+
+[node name="LblStatus" type="Label" parent="UI/PanelInfo"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 52.0
+offset_right = 552.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.15, 0.3, 0.52, 1)
+theme_override_font_sizes/font_size = 17
+text = "Kumpulkan tetesan air murni ke dalam awan. Abaikan elemen lain!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BtnNext" type="TextureButton" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 1102.0
+offset_top = 628.0
+offset_right = 1250.0
+offset_bottom = 700.0
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("14_btn_next")
+texture_pressed = ExtResource("14_btn_next")
+texture_hover = ExtResource("14_btn_next")
+
+[connection signal="input_event" from="Items/Water1" to="Items/Water1" method="_on_input_event"]
+[connection signal="input_event" from="Items/Water2" to="Items/Water2" method="_on_input_event"]
+[connection signal="input_event" from="Items/Water3" to="Items/Water3" method="_on_input_event"]
+[connection signal="input_event" from="Items/Water4" to="Items/Water4" method="_on_input_event"]
+[connection signal="input_event" from="Items/Water5" to="Items/Water5" method="_on_input_event"]
+[connection signal="input_event" from="Items/DistractorLeaf1" to="Items/DistractorLeaf1" method="_on_input_event"]
+[connection signal="input_event" from="Items/DistractorLeaf2" to="Items/DistractorLeaf2" method="_on_input_event"]
+[connection signal="input_event" from="Items/DistractorKite" to="Items/DistractorKite" method="_on_input_event"]
+[connection signal="pressed" from="UI/BtnNext" to="." method="_on_btn_next_pressed"]

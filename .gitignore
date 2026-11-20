@@ -1,0 +1,39 @@
+# Godot 4+ specific ignores
+.godot/
+program/.godot/
+
+# Godot-specific ignores
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+# Exported binaries & executables (exceeds GitHub 100MB limit)
+*.exe
+*.console.exe
+*.apk
+*.aab
+*.ipa
+*.app/
+*.dmg
+*.out
+*.tpk
+
+# Archives & Large Backup Zips
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# OS metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Graphify temporary caches
+graphify-out/cache/
+graphify-out/.graphify_*
+graphify-out/cost.json
+graphify-out/.chunk*.txt

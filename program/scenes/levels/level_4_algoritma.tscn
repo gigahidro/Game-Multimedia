@@ -1,0 +1,336 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/level_4.gd" id="1_lvl4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background/bg_level4.png" id="2_bg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/label_level4.png" id="4_title"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/panduan_box_blank.png" id="5_panduan"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/slot_kartu.png" id="6_slot"]
+[ext_resource type="Script" path="res://scripts/level_4_slot.gd" id="7_slot_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/kartu_presipitasi.png" id="8_pres"]
+[ext_resource type="Script" path="res://scripts/level_4_card.gd" id="9_card_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/kartu_evaporasi.png" id="10_evap"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/kartu_infiltrasi.png" id="11_infi"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/kartu_kondensasi.png" id="12_kond"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_reset.png" id="13_btn_reset"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_periksa.png" id="14_btn_check"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_next.png" id="15_btn_next"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/panah_tahap.png" id="16_arrow"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panduan_rect"]
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 20.0
+content_margin_bottom = 8.0
+bg_color = Color(0.96, 0.98, 1, 0.94)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 4
+border_color = Color(0.35, 0.68, 0.95, 0.95)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_color = Color(0.08, 0.22, 0.45, 0.25)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[node name="Level4Algoritma" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lvl4")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.04, 0.08, 0.16, 0.32)
+
+[node name="HeaderTitle" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 8.0
+offset_right = 920.0
+offset_bottom = 82.0
+texture = ExtResource("4_title")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Panduan" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 76.0
+offset_right = 1030.0
+offset_bottom = 168.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panduan_rect")
+
+[node name="VBox" type="VBoxContainer" parent="Panduan"]
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="LblInstruction" type="Label" parent="Panduan/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.28, 0.52, 1)
+theme_override_font_sizes/font_size = 19
+text = "Urutkan gambar proses siklus air dengan benar!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LblFeedback" type="Label" parent="Panduan/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.45, 0.72, 1)
+theme_override_font_sizes/font_size = 16
+text = "Tarik (drag) kartu di bawah ke kotak tahapan sesuai urutan."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SlotsContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 212.0
+offset_top = 180.0
+offset_right = 1068.0
+offset_bottom = 358.0
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="Slot1" type="TextureRect" parent="SlotsContainer"]
+custom_minimum_size = Vector2(170, 178)
+layout_mode = 2
+pivot_offset = Vector2(85, 89)
+texture = ExtResource("6_slot")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("7_slot_script")
+
+[node name="CardPlaced" type="TextureRect" parent="SlotsContainer/Slot1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(77, 81)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Arrow1" type="TextureRect" parent="SlotsContainer"]
+custom_minimum_size = Vector2(34, 178)
+layout_mode = 2
+texture = ExtResource("16_arrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot2" type="TextureRect" parent="SlotsContainer"]
+custom_minimum_size = Vector2(170, 178)
+layout_mode = 2
+pivot_offset = Vector2(85, 89)
+texture = ExtResource("6_slot")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("7_slot_script")
+slot_index = 1
+
+[node name="CardPlaced" type="TextureRect" parent="SlotsContainer/Slot2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(77, 81)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Arrow2" type="TextureRect" parent="SlotsContainer"]
+custom_minimum_size = Vector2(34, 178)
+layout_mode = 2
+texture = ExtResource("16_arrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot3" type="TextureRect" parent="SlotsContainer"]
+custom_minimum_size = Vector2(170, 178)
+layout_mode = 2
+pivot_offset = Vector2(85, 89)
+texture = ExtResource("6_slot")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("7_slot_script")
+slot_index = 2
+
+[node name="CardPlaced" type="TextureRect" parent="SlotsContainer/Slot3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(77, 81)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Arrow3" type="TextureRect" parent="SlotsContainer"]
+custom_minimum_size = Vector2(34, 178)
+layout_mode = 2
+texture = ExtResource("16_arrow")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slot4" type="TextureRect" parent="SlotsContainer"]
+custom_minimum_size = Vector2(170, 178)
+layout_mode = 2
+pivot_offset = Vector2(85, 89)
+texture = ExtResource("6_slot")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("7_slot_script")
+slot_index = 3
+
+[node name="CardPlaced" type="TextureRect" parent="SlotsContainer/Slot4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(77, 81)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CardsContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 385.0
+offset_right = 1060.0
+offset_bottom = 563.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="CardPres" type="TextureRect" parent="CardsContainer"]
+custom_minimum_size = Vector2(170, 178)
+layout_mode = 2
+pivot_offset = Vector2(85, 89)
+texture = ExtResource("8_pres")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("9_card_script")
+process_name = "Presipitasi"
+
+[node name="CardEvap" type="TextureRect" parent="CardsContainer"]
+custom_minimum_size = Vector2(170, 178)
+layout_mode = 2
+pivot_offset = Vector2(85, 89)
+texture = ExtResource("10_evap")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("9_card_script")
+process_name = "Evaporasi"
+
+[node name="CardInfi" type="TextureRect" parent="CardsContainer"]
+custom_minimum_size = Vector2(170, 178)
+layout_mode = 2
+pivot_offset = Vector2(85, 89)
+texture = ExtResource("11_infi")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("9_card_script")
+process_name = "Infiltrasi"
+
+[node name="CardKond" type="TextureRect" parent="CardsContainer"]
+custom_minimum_size = Vector2(170, 178)
+layout_mode = 2
+pivot_offset = Vector2(85, 89)
+texture = ExtResource("12_kond")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("9_card_script")
+process_name = "Kondensasi"
+
+[node name="ActionRow" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 628.0
+offset_right = 820.0
+offset_bottom = 700.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="BtnReset" type="TextureButton" parent="ActionRow"]
+custom_minimum_size = Vector2(160, 72)
+layout_mode = 2
+pivot_offset = Vector2(80, 36)
+texture_normal = ExtResource("13_btn_reset")
+texture_pressed = ExtResource("13_btn_reset")
+texture_hover = ExtResource("13_btn_reset")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BtnCheck" type="TextureButton" parent="ActionRow"]
+custom_minimum_size = Vector2(160, 72)
+layout_mode = 2
+pivot_offset = Vector2(80, 36)
+texture_normal = ExtResource("14_btn_check")
+texture_pressed = ExtResource("14_btn_check")
+texture_hover = ExtResource("14_btn_check")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BtnNext" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1102.0
+offset_top = 628.0
+offset_right = 1250.0
+offset_bottom = 700.0
+pivot_offset = Vector2(74, 36)
+texture_normal = ExtResource("15_btn_next")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="HUD" parent="." instance=ExtResource("3_hud")]
+
+[connection signal="pressed" from="ActionRow/BtnReset" to="." method="_on_btn_reset_pressed"]
+[connection signal="pressed" from="ActionRow/BtnCheck" to="." method="_on_btn_check_pressed"]
+[connection signal="pressed" from="BtnNext" to="." method="_on_btn_next_pressed"]

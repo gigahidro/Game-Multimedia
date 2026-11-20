@@ -1,0 +1,512 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/victory.gd" id="1_vic"]
+[ext_resource type="Texture2D" path="res://assets/sprites/background/bg_victory.png" id="2_bg"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/eval_ui/icon_puzzle.png" id="3_puz"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/eval_ui/icon_magnifier.png" id="4_mag"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/eval_ui/icon_target.png" id="5_tar"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/eval_ui/icon_lightning.png" id="6_lig"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_mainlagi.png" id="7_btn_mainlagi"]
+[ext_resource type="Texture2D" path="res://assets/sprites/button/button_close.png" id="8_btn_close"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header_top"]
+content_margin_left = 28.0
+content_margin_top = 8.0
+content_margin_right = 28.0
+content_margin_bottom = 8.0
+bg_color = Color(0.24, 0.65, 0.95, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 4
+border_color = Color(0.12, 0.42, 0.75, 1)
+corner_radius_top_left = 24
+corner_radius_top_right = 24
+corner_radius_bottom_right = 24
+corner_radius_bottom_left = 24
+shadow_color = Color(0.08, 0.25, 0.45, 0.3)
+shadow_size = 8
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_header_sub"]
+content_margin_left = 20.0
+content_margin_top = 4.0
+content_margin_right = 20.0
+content_margin_bottom = 4.0
+bg_color = Color(0.98, 0.96, 0.9, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.55, 0.85, 0.9)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main_board"]
+content_margin_left = 24.0
+content_margin_top = 18.0
+content_margin_right = 24.0
+content_margin_bottom = 18.0
+bg_color = Color(0.94, 0.97, 1, 0.96)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 5
+border_color = Color(0.28, 0.58, 0.88, 1)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
+shadow_color = Color(0.05, 0.15, 0.3, 0.35)
+shadow_size = 14
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_summary_bar"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+bg_color = Color(0.98, 0.96, 0.91, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.38, 0.68, 0.92, 0.85)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.98, 0.99, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color(0.38, 0.68, 0.92, 0.85)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_header"]
+content_margin_left = 12.0
+content_margin_top = 4.0
+content_margin_right = 14.0
+content_margin_bottom = 4.0
+bg_color = Color(0.32, 0.68, 0.96, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color(0.15, 0.45, 0.75, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="Victory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vic")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="HeaderGroup" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = 12.0
+offset_right = 340.0
+offset_bottom = 104.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="PillTitle" type="PanelContainer" parent="HeaderGroup"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_header_top")
+
+[node name="LblTitle" type="Label" parent="HeaderGroup/PillTitle"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.3, 0.58, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 24
+text = "HASIL EVALUASI COMPUTATIONAL THINKING"
+horizontal_alignment = 1
+
+[node name="PillSubtitle" type="PanelContainer" parent="HeaderGroup"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_header_sub")
+
+[node name="LblSubtitle" type="Label" parent="HeaderGroup/PillSubtitle"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.28, 0.52, 1)
+theme_override_font_sizes/font_size = 16
+text = "Materi: Siklus Air (Water Cycle)"
+horizontal_alignment = 1
+
+[node name="MainBoard" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -380.0
+offset_top = -245.0
+offset_right = 380.0
+offset_bottom = 225.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_main_board")
+
+[node name="InnerVBox" type="VBoxContainer" parent="MainBoard"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="SummaryBar" type="PanelContainer" parent="MainBoard/InnerVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_summary_bar")
+
+[node name="HBox" type="HBoxContainer" parent="MainBoard/InnerVBox/SummaryBar"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="LblAvgText" type="Label" parent="MainBoard/InnerVBox/SummaryBar/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.25, 0.45, 1)
+theme_override_font_sizes/font_size = 18
+text = "Rata-Rata Skor Keseluruhan:"
+
+[node name="LblAvgValue" type="Label" parent="MainBoard/InnerVBox/SummaryBar/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.44, 0.88, 1)
+theme_override_font_sizes/font_size = 26
+text = "0.0%"
+
+[node name="LblAvgCategory" type="Label" parent="MainBoard/InnerVBox/SummaryBar/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.68, 0.32, 1)
+theme_override_font_sizes/font_size = 20
+text = "(Kategori: SANGAT TINGGI)"
+
+[node name="GridCards" type="GridContainer" parent="MainBoard/InnerVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 14
+theme_override_constants/v_separation = 14
+columns = 2
+
+[node name="CardDecomp" type="PanelContainer" parent="MainBoard/InnerVBox/GridCards"]
+custom_minimum_size = Vector2(348, 155)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardDecomp"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderPill" type="PanelContainer" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_header")
+
+[node name="HBox" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox/HeaderPill"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox/HeaderPill/HBox"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("3_puz")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox/HeaderPill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "DEKOMPOSISI"
+
+[node name="RowScore" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Lbl" type="Label" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox/RowScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.22, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+text = "Skor: "
+
+[node name="Val" type="Label" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox/RowScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.44, 0.88, 1)
+theme_override_font_sizes/font_size = 26
+text = "0%"
+
+[node name="RowCategory" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Lbl" type="Label" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox/RowCategory"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.22, 0.35, 1)
+theme_override_font_sizes/font_size = 16
+text = "Kategori: "
+
+[node name="Badge" type="Label" parent="MainBoard/InnerVBox/GridCards/CardDecomp/VBox/RowCategory"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.68, 0.32, 1)
+theme_override_font_sizes/font_size = 17
+text = "Sangat Tinggi"
+
+[node name="CardPattern" type="PanelContainer" parent="MainBoard/InnerVBox/GridCards"]
+custom_minimum_size = Vector2(348, 155)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardPattern"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderPill" type="PanelContainer" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_header")
+
+[node name="HBox" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox/HeaderPill"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox/HeaderPill/HBox"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("4_mag")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox/HeaderPill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "PENGENALAN POLA"
+
+[node name="RowScore" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Lbl" type="Label" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox/RowScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.22, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+text = "Skor: "
+
+[node name="Val" type="Label" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox/RowScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.44, 0.88, 1)
+theme_override_font_sizes/font_size = 26
+text = "0%"
+
+[node name="RowCategory" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Lbl" type="Label" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox/RowCategory"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.22, 0.35, 1)
+theme_override_font_sizes/font_size = 16
+text = "Kategori: "
+
+[node name="Badge" type="Label" parent="MainBoard/InnerVBox/GridCards/CardPattern/VBox/RowCategory"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.6, 0.12, 1)
+theme_override_font_sizes/font_size = 17
+text = "Tinggi"
+
+[node name="CardAbstract" type="PanelContainer" parent="MainBoard/InnerVBox/GridCards"]
+custom_minimum_size = Vector2(348, 155)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardAbstract"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderPill" type="PanelContainer" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_header")
+
+[node name="HBox" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox/HeaderPill"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox/HeaderPill/HBox"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("5_tar")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox/HeaderPill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "ABSTRAKSI"
+
+[node name="RowScore" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Lbl" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox/RowScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.22, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+text = "Skor: "
+
+[node name="Val" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox/RowScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.44, 0.88, 1)
+theme_override_font_sizes/font_size = 26
+text = "0%"
+
+[node name="RowCategory" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Lbl" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox/RowCategory"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.22, 0.35, 1)
+theme_override_font_sizes/font_size = 16
+text = "Kategori: "
+
+[node name="Badge" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAbstract/VBox/RowCategory"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.6, 0.12, 1)
+theme_override_font_sizes/font_size = 17
+text = "Tinggi"
+
+[node name="CardAlgo" type="PanelContainer" parent="MainBoard/InnerVBox/GridCards"]
+custom_minimum_size = Vector2(348, 155)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardAlgo"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HeaderPill" type="PanelContainer" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_header")
+
+[node name="HBox" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox/HeaderPill"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Icon" type="TextureRect" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox/HeaderPill/HBox"]
+custom_minimum_size = Vector2(26, 26)
+layout_mode = 2
+texture = ExtResource("6_lig")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox/HeaderPill/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "ALGORITMA"
+
+[node name="RowScore" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Lbl" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox/RowScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.22, 0.35, 1)
+theme_override_font_sizes/font_size = 18
+text = "Skor: "
+
+[node name="Val" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox/RowScore"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.1, 0.44, 0.88, 1)
+theme_override_font_sizes/font_size = 26
+text = "0%"
+
+[node name="RowCategory" type="HBoxContainer" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Lbl" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox/RowCategory"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.22, 0.35, 1)
+theme_override_font_sizes/font_size = 16
+text = "Kategori: "
+
+[node name="Badge" type="Label" parent="MainBoard/InnerVBox/GridCards/CardAlgo/VBox/RowCategory"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18, 0.68, 0.32, 1)
+theme_override_font_sizes/font_size = 17
+text = "Sangat Tinggi"
+
+[node name="Buttons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -195.0
+offset_top = -92.0
+offset_right = 195.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="BtnPlayAgain" type="TextureButton" parent="Buttons"]
+custom_minimum_size = Vector2(210, 72)
+layout_mode = 2
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("7_btn_mainlagi")
+texture_pressed = ExtResource("7_btn_mainlagi")
+texture_hover = ExtResource("7_btn_mainlagi")
+
+[node name="BtnClose" type="TextureButton" parent="Buttons"]
+custom_minimum_size = Vector2(150, 72)
+layout_mode = 2
+ignore_texture_size = true
+stretch_mode = 5
+texture_normal = ExtResource("8_btn_close")
+texture_pressed = ExtResource("8_btn_close")
+texture_hover = ExtResource("8_btn_close")
+
+[connection signal="pressed" from="Buttons/BtnPlayAgain" to="." method="_on_btn_play_again_pressed"]
+[connection signal="pressed" from="Buttons/BtnClose" to="." method="_on_btn_close_pressed"]

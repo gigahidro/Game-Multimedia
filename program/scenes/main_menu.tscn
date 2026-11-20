@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://dg8r6pruu742u"]
+
+[ext_resource type="Script" uid="uid://41uiglamc6ba" path="res://scripts/main_menu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://s57huowg8d85" path="res://assets/sprites/background/bg_sceneawal.png" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://brag8x07or8nu" path="res://assets/sprites/element/element_logo_menu.png" id="3_logo"]
+[ext_resource type="Texture2D" uid="uid://xeyeob5fegyo" path="res://assets/sprites/element/matahari.png" id="4_sun"]
+[ext_resource type="Texture2D" uid="uid://c8wqfgmiyw0yx" path="res://assets/sprites/button/button_play.png" id="5_play"]
+[ext_resource type="Texture2D" uid="uid://81hkmeb381y3" path="res://assets/sprites/button/button_close.png" id="6_close"]
+[ext_resource type="Texture2D" uid="uid://bl0wvxv8x3si" path="res://assets/sprites/button/button_sound.png" id="7_sound"]
+[ext_resource type="Texture2D" uid="uid://b21ykeap2cnf8" path="res://assets/sprites/button/button_sound_x.png" id="8_soundx"]
+
+[node name="MainMenu" type="Control" unique_id=911649870]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1684442257]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Sun" type="TextureRect" parent="." unique_id=185872159]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 56.0
+offset_right = 349.0
+offset_bottom = 263.0
+texture = ExtResource("4_sun")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Logo" type="TextureRect" parent="." unique_id=674034173]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 109.0
+offset_right = 923.0
+offset_bottom = 419.0
+texture = ExtResource("3_logo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BtnPlay" type="TextureButton" parent="." unique_id=802219745]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 514.0
+offset_right = 630.0
+offset_bottom = 586.0
+texture_normal = ExtResource("5_play")
+texture_pressed = ExtResource("5_play")
+texture_hover = ExtResource("5_play")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BtnClose" type="TextureButton" parent="." unique_id=1928763107]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 514.0
+offset_right = 800.0
+offset_bottom = 586.0
+texture_normal = ExtResource("6_close")
+texture_pressed = ExtResource("6_close")
+texture_hover = ExtResource("6_close")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BtnSound" type="TextureButton" parent="." unique_id=100999436]
+layout_mode = 0
+offset_left = 1140.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 77.0
+texture_normal = ExtResource("7_sound")
+texture_pressed = ExtResource("7_sound")
+texture_hover = ExtResource("7_sound")
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="BtnSoundX" type="TextureButton" parent="." unique_id=1108851553]
+visible = false
+layout_mode = 0
+offset_left = 1140.0
+offset_top = 20.0
+offset_right = 1260.0
+offset_bottom = 77.0
+texture_normal = ExtResource("8_soundx")
+texture_pressed = ExtResource("8_soundx")
+texture_hover = ExtResource("8_soundx")
+ignore_texture_size = true
+stretch_mode = 1
+
+[node name="Credits" type="Label" parent="." unique_id=689381263]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 695.0
+offset_right = 700.0
+offset_bottom = 718.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.7)
+theme_override_font_sizes/font_size = 12
+text = "Kelompok 14B - PTIK FKIP UNS 2026 | ADDIE Model"
+
+[connection signal="pressed" from="BtnPlay" to="." method="_on_btn_play_pressed"]
+[connection signal="pressed" from="BtnClose" to="." method="_on_btn_close_pressed"]
+[connection signal="pressed" from="BtnSound" to="." method="_on_btn_sound_pressed"]
+[connection signal="pressed" from="BtnSoundX" to="." method="_on_btn_sound_x_pressed"]
