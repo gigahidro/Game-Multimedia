@@ -7,8 +7,9 @@ extends Node2D
 @onready var slider_suhu: HSlider = $UI/PanelSuhuCard/SliderSuhu
 @onready var lbl_suhu_val: Label = $UI/PanelSuhuCard/LblSuhuVal
 
-@onready var progress_bar: ProgressBar = $UI/ProgressContainer/ProgressBar
-@onready var lbl_status: Label = $UI/ProgressContainer/LblStatus
+@onready var panel_info: TextureRect = get_node_or_null("UI/PanelInfo")
+@onready var progress_bar: ProgressBar = get_node_or_null("UI/PanelInfo/ProgressBar") if has_node("UI/PanelInfo/ProgressBar") else get_node_or_null("UI/ProgressContainer/ProgressBar")
+@onready var lbl_status: Label = get_node_or_null("UI/PanelInfo/LblStatus") if has_node("UI/PanelInfo/LblStatus") else get_node_or_null("UI/ProgressContainer/LblStatus")
 @onready var btn_next: TextureButton = $UI/BtnNext
 
 const TEX_KNOB_KUNING = preload("res://assets/sprites/element/knop_kuning_pengatur_suhu.png")
@@ -39,6 +40,8 @@ func _ready() -> void:
 	
 	btn_next.visible = false
 	progress_bar.value = 0.0
+	lbl_status.modulate = Color(0.15, 0.3, 0.52, 1.0)
+	lbl_status.text = "Suhu masih hangat (35°C). Kenali polanya: turunkan suhu!"
 	
 	awan1.modulate.a = 0.15
 	
@@ -112,7 +115,7 @@ func _process(delta: float) -> void:
 		progress_bar.value = condensation_progress
 		
 		lbl_status.text = "Pola Dingin Ditemukan! Pada suhu dingin (" + str(int(suhu)) + "°C), uap air mengembun menjadi awan!"
-		lbl_status.modulate = Color(0.3, 0.9, 1.0)
+		lbl_status.modulate = Color(0.08, 0.48, 0.85, 1.0)
 		
 		# Awan menebal & membesar perlahan
 		var cloud_alpha = lerp(0.15, 1.0, condensation_progress / 100.0)
@@ -150,13 +153,13 @@ func _process(delta: float) -> void:
 		
 		if suhu > 35.0 and not level_completed:
 			lbl_status.text = "Polanya berlawanan: Suhu panas menguapkan air, bukan mengembunkannya!"
-			lbl_status.modulate = Color(1.0, 0.4, 0.4)
+			lbl_status.modulate = Color(0.85, 0.2, 0.2, 1.0)
 		elif suhu > 25.0:
 			lbl_status.text = "Suhu masih hangat (" + str(int(suhu)) + "°C). Amati: uap masih melayang bebas, belum mengembun."
-			lbl_status.modulate = Color(1.0, 0.7, 0.2)
+			lbl_status.modulate = Color(0.82, 0.45, 0.05, 1.0)
 		else:
 			lbl_status.text = "Mulai sejuk (" + str(int(suhu)) + "°C). Uap air mulai bergerak saling mendekat..."
-			lbl_status.modulate = Color(0.7, 0.9, 1.0)
+			lbl_status.modulate = Color(0.15, 0.35, 0.6, 1.0)
 
 func _update_knob_and_label(val: float) -> void:
 	# Ganti knop dan warna bar slider (biru saat dingin, kuning/oranye saat hangat)
@@ -227,7 +230,13 @@ func _on_condensation_completed() -> void:
 	level_completed = true
 	Global.play_sfx("berhasil")
 	lbl_status.text = "Pola Ditemukan! Suhu dingin mengembunkan uap air menjadi awan sempurna!"
-	lbl_status.modulate = Color(0.2, 1.0, 0.5)
+	lbl_status.modulate = Color(0.08, 0.55, 0.22, 1.0)
+	
+	if panel_info:
+		panel_info.pivot_offset = panel_info.size / 2
+		var pt = create_tween()
+		pt.tween_property(panel_info, "scale", Vector2(1.05, 1.05), 0.08).set_trans(Tween.TRANS_SINE)
+		pt.tween_property(panel_info, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_SINE)
 	
 	# Sisa uap disembunyikan supaya tidak menggantung di awan
 	for v in vapor_nodes:

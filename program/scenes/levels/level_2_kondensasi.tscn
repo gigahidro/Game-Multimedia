@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3]
+[gd_scene load_steps=17 format=3]
 
 [ext_resource type="Script" path="res://scripts/level_2.gd" id="1_lvl2"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="2_hud"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" path="res://assets/sprites/element/knop_kuning_pengatur_suhu.png" id="10_knob_kuning"]
 [ext_resource type="Texture2D" path="res://assets/sprites/element/knop_biru_pengatur_suhu.png" id="11_knob_biru"]
 [ext_resource type="Texture2D" path="res://assets/sprites/button/button_next.png" id="12_btn_next"]
+[ext_resource type="Texture2D" path="res://assets/sprites/element/kartu_indikator_air.png" id="13_panel"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slider_bg"]
 content_margin_top = 13.0
@@ -40,28 +41,28 @@ corner_radius_bottom_right = 13
 corner_radius_bottom_left = 13
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_bg"]
-bg_color = Color(0.12, 0.18, 0.25, 0.8)
+bg_color = Color(0.82, 0.9, 0.98, 0.92)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.25, 0.45, 0.65, 0.9)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+border_color = Color(0.6, 0.78, 0.94, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_progress_fill"]
-bg_color = Color(0.2, 0.85, 0.5, 1)
+bg_color = Color(0.18, 0.72, 0.96, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.4, 1.0, 0.7, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+border_color = Color(0.45, 0.88, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Level2Kondensasi" type="Node2D"]
 script = ExtResource("1_lvl2")
@@ -80,9 +81,9 @@ stretch_mode = 6
 [node name="Awan1" type="TextureRect" parent="Clouds"]
 modulate = Color(1, 1, 1, 0.15)
 offset_left = 405.0
-offset_top = 220.0
+offset_top = 110.0
 offset_right = 875.0
-offset_bottom = 460.0
+offset_bottom = 350.0
 pivot_offset = Vector2(235, 120)
 texture = ExtResource("4_awan1")
 expand_mode = 1
@@ -166,39 +167,43 @@ theme_override_font_sizes/font_size = 20
 text = "35 °C (Hangat)"
 horizontal_alignment = 1
 
-[node name="ProgressContainer" type="VBoxContainer" parent="UI"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -280.0
-offset_top = -105.0
-offset_right = 280.0
-offset_bottom = -25.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 6
-alignment = 1
+[node name="PanelInfo" type="TextureRect" parent="UI"]
+layout_mode = 0
+offset_left = 355.0
+offset_top = 588.0
+offset_right = 925.0
+offset_bottom = 700.0
+pivot_offset = Vector2(285, 56)
+texture = ExtResource("13_panel")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="LblStatus" type="Label" parent="UI/ProgressContainer"]
-custom_minimum_size = Vector2(560, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.85)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 18
-text = "Suhu masih hangat (35°C). Kenali polanya: turunkan suhu!"
-horizontal_alignment = 1
-autowrap_mode = 2
-
-[node name="ProgressBar" type="ProgressBar" parent="UI/ProgressContainer"]
-custom_minimum_size = Vector2(520, 26)
-layout_mode = 2
+[node name="ProgressBar" type="ProgressBar" parent="UI/PanelInfo"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 16.0
+offset_right = 540.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.1, 0.22, 0.42, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.9)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 14
 theme_override_styles/background = SubResource("StyleBoxFlat_progress_bg")
 theme_override_styles/fill = SubResource("StyleBoxFlat_progress_fill")
 show_percentage = true
+
+[node name="LblStatus" type="Label" parent="UI/PanelInfo"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 48.0
+offset_right = 552.0
+offset_bottom = 104.0
+theme_override_colors/font_color = Color(0.12, 0.28, 0.52, 1)
+theme_override_font_sizes/font_size = 16
+text = "Suhu masih hangat (35°C). Kenali polanya: turunkan suhu!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="BtnNext" type="TextureButton" parent="UI"]
 visible = false

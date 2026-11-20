@@ -17,8 +17,9 @@ extends Node2D
 @onready var slider_suhu: HSlider = $UI/PanelSuhuCard/SliderSuhu
 @onready var lbl_suhu_val: Label = $UI/PanelSuhuCard/LblSuhuVal
 
-@onready var progress_bar: ProgressBar = $UI/ProgressContainer/ProgressBar
-@onready var lbl_status: Label = $UI/ProgressContainer/LblStatus
+@onready var panel_info: TextureRect = get_node_or_null("UI/PanelInfo")
+@onready var progress_bar: ProgressBar = get_node_or_null("UI/PanelInfo/ProgressBar") if has_node("UI/PanelInfo/ProgressBar") else get_node_or_null("UI/ProgressContainer/ProgressBar")
+@onready var lbl_status: Label = get_node_or_null("UI/PanelInfo/LblStatus") if has_node("UI/PanelInfo/LblStatus") else get_node_or_null("UI/ProgressContainer/LblStatus")
 @onready var btn_next: TextureButton = $UI/BtnNext
 
 const TEX_KNOB_KUNING = preload("res://assets/sprites/element/knop_kuning_pengatur_suhu.png")
@@ -43,6 +44,8 @@ func _ready() -> void:
 	hud.set_help_instruction("Misi Dekomposisi: Temukan kombinasi kondisi alam yang tepat agar air laut & pohon bisa menguap!")
 	
 	progress_bar.value = 0.0
+	lbl_status.modulate = Color(0.15, 0.3, 0.52, 1.0)
+	lbl_status.text = "Malam hari: Suhu dingin, belum ada penguapan air."
 	panduan_malam.visible = false
 	panduan_siang.visible = false
 	panel_suhu_card.visible = true
@@ -98,7 +101,7 @@ func _process(delta: float) -> void:
 		progress_bar.value = evaporation_progress
 		
 		lbl_status.text = "Suhu panas! Air laut menguap (Evaporasi) & pohon berkeringat (Transpirasi)!"
-		lbl_status.modulate = Color(0.3, 1.0, 0.4)
+		lbl_status.modulate = Color(0.08, 0.55, 0.22, 1.0)
 		
 		if evaporation_progress >= 100.0:
 			_on_evaporation_completed()
@@ -109,13 +112,13 @@ func _process(delta: float) -> void:
 		if not is_daytime:
 			if suhu >= 45.0:
 				lbl_status.text = "Suhu dinaikkan, tapi matahari malam belum bersinar. Dekomposisi belum lengkap: butuh waktu siang!"
-				lbl_status.modulate = Color(1.0, 0.4, 0.4)
+				lbl_status.modulate = Color(0.85, 0.2, 0.2, 1.0)
 			else:
 				lbl_status.text = "Malam hari: Suhu dingin, belum ada penguapan air."
-				lbl_status.modulate = Color(0.8, 0.9, 1.0)
+				lbl_status.modulate = Color(0.15, 0.3, 0.52, 1.0)
 		elif suhu < 45.0:
 			lbl_status.text = "Hari sudah siang, tapi suhu belum cukup panas (geser slider ke >= 45°C)!"
-			lbl_status.modulate = Color(1.0, 0.8, 0.2)
+			lbl_status.modulate = Color(0.85, 0.45, 0.05, 1.0)
 
 func _setup_button_animations(btn: TextureButton) -> void:
 	btn.pivot_offset = btn.size / 2
@@ -227,7 +230,13 @@ func _on_evaporation_completed() -> void:
 	level_completed = true
 	Global.play_sfx("berhasil")
 	lbl_status.text = "Luar Biasa! Air laut menguap (Evaporasi) & pohon berkeringat (Transpirasi)!"
-	lbl_status.modulate = Color(0.2, 1.0, 0.5)
+	lbl_status.modulate = Color(0.08, 0.48, 0.85, 1.0)
+	
+	if panel_info:
+		panel_info.pivot_offset = panel_info.size / 2
+		var pt = create_tween()
+		pt.tween_property(panel_info, "scale", Vector2(1.05, 1.05), 0.08).set_trans(Tween.TRANS_SINE)
+		pt.tween_property(panel_info, "scale", Vector2.ONE, 0.12).set_trans(Tween.TRANS_SINE)
 	
 	# Kalkulasi skor CT Dekomposisi
 	var ct_points = 100
