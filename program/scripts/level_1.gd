@@ -43,6 +43,8 @@ func _ready() -> void:
 	hud.set_help_instruction("Misi Dekomposisi: Temukan kombinasi kondisi alam yang tepat agar air laut & pohon bisa menguap!")
 	
 	progress_bar.value = 0.0
+	panduan_malam.visible = false
+	panduan_siang.visible = false
 	panel_suhu_card.visible = true
 	panel_suhu_card.modulate.a = 1.0
 	btn_transisi_siang.visible = true
@@ -216,18 +218,10 @@ func _on_btn_transisi_siang_pressed() -> void:
 	t.tween_property(bg_siang, "modulate:a", 1.0, 1.2).set_trans(Tween.TRANS_CUBIC)
 	t.tween_property(bulan, "modulate:a", 0.0, 0.8).set_trans(Tween.TRANS_CUBIC)
 	t.tween_property(matahari, "modulate:a", 1.0, 1.2).set_trans(Tween.TRANS_CUBIC)
-	t.tween_property(panduan_malam, "modulate:a", 0.0, 0.5)
 	t.tween_property(btn_transisi_siang, "modulate:a", 0.0, 0.4)
 	
 	await t.finished
-	panduan_malam.visible = false
 	btn_transisi_siang.visible = false
-	
-	panduan_siang.visible = true
-	panduan_siang.modulate.a = 0.0
-	
-	var t2 = create_tween()
-	t2.tween_property(panduan_siang, "modulate:a", 1.0, 0.6)
 
 func _on_evaporation_completed() -> void:
 	level_completed = true

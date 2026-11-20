@@ -186,6 +186,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="PanduanMalam" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 390.0
 offset_top = 90.0

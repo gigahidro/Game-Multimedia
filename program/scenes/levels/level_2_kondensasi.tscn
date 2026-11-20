@@ -108,6 +108,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Panduan" type="TextureRect" parent="UI"]
+visible = false
 layout_mode = 0
 offset_left = 330.0
 offset_top = 90.0
