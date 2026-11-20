@@ -35,7 +35,7 @@ func _ready() -> void:
 	Global.play_bgm("musik_level")
 	Global.current_level = 2
 	hud.update_hud()
-	hud.set_help_instruction("Turunkan suhu atmosfer di bawah 10°C agar uap air mengembun menjadi awan!")
+	hud.set_help_instruction("Udara di atmosfer atas sangat dingin. Geser suhu perlahan ke arah dingin dan amati di suhu berapa uap air mulai mengembun membentuk awan!")
 	
 	btn_next.visible = false
 	progress_bar.value = 0.0
@@ -111,7 +111,7 @@ func _process(delta: float) -> void:
 		condensation_progress = min(100.0, condensation_progress + delta * speed)
 		progress_bar.value = condensation_progress
 		
-		lbl_status.text = "Suhu dingin! Uap air mengenali pola dingin dan mengembun membentuk awan..."
+		lbl_status.text = "Pola Dingin Ditemukan! Pada suhu dingin (" + str(int(suhu)) + "°C), uap air mengembun menjadi awan!"
 		lbl_status.modulate = Color(0.3, 0.9, 1.0)
 		
 		# Awan menebal & membesar perlahan
@@ -148,11 +148,14 @@ func _process(delta: float) -> void:
 			v.position.y = vapor_initial_pos[i].y - phase * UAP_RISE_DISTANCE + wobble
 			v.modulate.a = 0.85 * sin(phase * PI)
 		
-		if suhu > 25.0:
-			lbl_status.text = "Suhu masih hangat (" + str(int(suhu)) + "°C). Kenali polanya: uap butuh suhu DINGIN (<= 10°C)!"
+		if suhu > 35.0 and not level_completed:
+			lbl_status.text = "Polanya berlawanan: Suhu panas menguapkan air, bukan mengembunkannya!"
+			lbl_status.modulate = Color(1.0, 0.4, 0.4)
+		elif suhu > 25.0:
+			lbl_status.text = "Suhu masih hangat (" + str(int(suhu)) + "°C). Amati: uap masih melayang bebas, belum mengembun."
 			lbl_status.modulate = Color(1.0, 0.7, 0.2)
 		else:
-			lbl_status.text = "Suhu sedang turun (" + str(int(suhu)) + "°C). Teruskan geser ke bawah 10°C agar uap mengembun!"
+			lbl_status.text = "Mulai sejuk (" + str(int(suhu)) + "°C). Uap air mulai bergerak saling mendekat..."
 			lbl_status.modulate = Color(0.7, 0.9, 1.0)
 
 func _update_knob_and_label(val: float) -> void:
@@ -188,7 +191,8 @@ func _on_slider_suhu_value_changed(value: float) -> void:
 	# Evaluasi CT: jika pemain malah menaikkan suhu lebih panas
 	if value > 35.0 and not level_completed:
 		wrong_pattern_attempts += 1
-		lbl_status.text = "Ingat polanya: Suhu panas membuat air menguap, bukan mengembun!"
+		Global.play_sfx("gagal")
+		lbl_status.text = "Polanya berlawanan: Suhu panas menguapkan air, bukan mengembunkannya!"
 		lbl_status.modulate = Color(1.0, 0.4, 0.4)
 
 func _setup_button_animations(btn: TextureButton) -> void:

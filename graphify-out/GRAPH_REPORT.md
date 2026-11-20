@@ -1,12 +1,20 @@
 # Graph Report - game  (2026-11-20)
 
 ## Corpus Check
-- Corpus is ~4,836 words - fits in a single context window. You may not need a graph.
+- 3 files · ~4,836 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 198 file(s) not represented in the graph (top: .import 119, .uid 28, .gd 24)
+- WARNING: 198 of 321 files seen (62%) have no supported extractor and are missing from this graph entirely. It may look complete while representing only part of the codebase.
 
 ## Summary
-- 177 nodes · 152 edges · 61 communities (18 shown, 43 thin omitted)
-- Extraction: 80% EXTRACTED · 20% INFERRED · 0% AMBIGUOUS · INFERRED: 31 edges (avg confidence: 0.93)
+- 185 nodes · 159 edges · 62 communities (19 shown, 43 thin omitted)
+- Extraction: 81% EXTRACTED · 19% INFERRED · 0% AMBIGUOUS · INFERRED: 31 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `fa97b5c5`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - CT Pillars & Evaluation Tracking
@@ -49,26 +57,27 @@
 - Materi.SLIDES Component
 - SkyItem.is_water Component
 - SkyItem.item_name Component
+- DAFTAR_ASET_1daa5a22.md
 
 ## God Nodes (most connected - your core abstractions)
 1. `Global.play_sfx()` - 16 edges
-2. `Global.play_bgm()` - 10 edges
-3. `Global.complete_level()` - 10 edges
+2. `Global.complete_level()` - 10 edges
+3. `Global.play_bgm()` - 10 edges
 4. `Victory._display_ct_evaluation()` - 7 edges
 5. `Global.add_score()` - 6 edges
-6. `Global.ct_abstraction` - 5 edges
-7. `4 Pillars of Computational Thinking Integration` - 5 edges
-8. `Four Pillars of Computational Thinking Framework` - 5 edges
-9. `Global.current_level` - 4 edges
-10. `Global.max_unlocked_level` - 4 edges
+6. `Four Pillars of Computational Thinking Framework` - 5 edges
+7. `Global.ct_abstraction` - 5 edges
+8. `4 Pillars of Computational Thinking Integration` - 5 edges
+9. `Media Plan: Water Cycle Adventure (Kelompok 14B)` - 4 edges
+10. `Global.ct_algorithm` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `Implicit CT Assessment & Evaluation Metric` --conceptually_related_to--> `Test Victory & Evaluation Suite`  [INFERRED]
+  Kelompok 14B Template Rencana Media Prak Multimedia 2 - 2026 .docx.pdf → program/tests/test_victory_gameover.gd
 - `Daftar Aset: Audio BGM & SFX` --conceptually_related_to--> `Global.play_sfx()`  [INFERRED]
   DAFTAR_ASET.md → program/scripts/global.gd
 - `Full Audio & BGM Architecture` --conceptually_related_to--> `Global.play_sfx()`  [INFERRED]
   HANDOVER_SESSION.md → program/scripts/global.gd
-- `Implicit CT Assessment & Evaluation Metric` --conceptually_related_to--> `Test Victory & Evaluation Suite`  [INFERRED]
-  Kelompok 14B Template Rencana Media Prak Multimedia 2 - 2026 .docx.pdf → program/tests/test_victory_gameover.gd
 - `Daftar Aset: Audio BGM & SFX` --conceptually_related_to--> `Global.play_bgm()`  [INFERRED]
   DAFTAR_ASET.md → program/scripts/global.gd
 - `Full Audio & BGM Architecture` --conceptually_related_to--> `Global.play_bgm()`  [INFERRED]
@@ -78,13 +87,13 @@
 - None detected.
 
 ## Hyperedges (group relationships)
-- **Computational Thinking 4 Pillars Assessment Flow** — program_scripts_level_1_class, program_scripts_level_2_class, program_scripts_level_3_class, program_scripts_level_4_class, program_scripts_victory_class, handover_session_computational_thinking [INFERRED 0.95]
-- **Water Cycle Natural Stages (Evaporation to Infiltration)** — program_scripts_level_1_on_evaporation_completed, program_scripts_level_2_on_condensation_completed, program_scripts_level_3_on_precipitation_completed, program_scripts_level_4_on_btn_check_pressed [INFERRED 0.95]
-- **Global BGM and Multi-Channel SFX Subsystem** — program_scripts_global_play_sfx, program_scripts_global_play_rain_sfx, program_scripts_global_play_bgm, program_scripts_global_stop_bgm, handover_session_audio_architecture, daftar_aset_audio [INFERRED 0.95]
-- **CT Curriculum Alignment across Game Levels** — kelompok_14b_template_rencana_media_prak_multimedia_2_2026_computational_thinking_framework, program_tests_test_level_1_scene_test_decomposition_tracking, program_tests_test_level_2_scene_test_pattern_tracking, program_tests_test_level_3_scene_test_abstraction_distractors, program_tests_test_level_4_scene_test_algorithm_validation, program_tests_test_victory_gameover_test_ct_badges [INFERRED 0.85]
 - **Automated Game Scene and System Verification** — program_tests_test_audio_system_suite, program_tests_test_home_scene_suite, program_tests_test_hud_scene_suite, program_tests_test_level_1_scene_suite, program_tests_test_level_2_scene_suite, program_tests_test_level_3_scene_suite, program_tests_test_level_4_scene_suite, program_tests_test_materi_scene_suite, program_tests_test_victory_gameover_suite [EXTRACTED 1.00]
+- **CT Curriculum Alignment across Game Levels** — kelompok_14b_template_rencana_media_prak_multimedia_2_2026_computational_thinking_framework, program_tests_test_level_1_scene_test_decomposition_tracking, program_tests_test_level_2_scene_test_pattern_tracking, program_tests_test_level_3_scene_test_abstraction_distractors, program_tests_test_level_4_scene_test_algorithm_validation, program_tests_test_victory_gameover_test_ct_badges [INFERRED 0.85]
+- **Computational Thinking 4 Pillars Assessment Flow** — program_scripts_level_1_class, program_scripts_level_2_class, program_scripts_level_3_class, program_scripts_level_4_class, program_scripts_victory_class, handover_session_computational_thinking [INFERRED 0.95]
+- **Global BGM and Multi-Channel SFX Subsystem** — program_scripts_global_play_sfx, program_scripts_global_play_rain_sfx, program_scripts_global_play_bgm, program_scripts_global_stop_bgm, handover_session_audio_architecture, daftar_aset_audio [INFERRED 0.95]
+- **Water Cycle Natural Stages (Evaporation to Infiltration)** — program_scripts_level_1_on_evaporation_completed, program_scripts_level_2_on_condensation_completed, program_scripts_level_3_on_precipitation_completed, program_scripts_level_4_on_btn_check_pressed [INFERRED 0.95]
 
-## Communities (61 total, 43 thin omitted)
+## Communities (62 total, 43 thin omitted)
 
 ### Community 0 - "CT Pillars & Evaluation Tracking"
 Cohesion: 0.12
@@ -158,25 +167,29 @@ Nodes (4): Test Materi Scene Suite, Final Slide Next/Close Replacement Test, Sli
 Cohesion: 0.67
 Nodes (3): Test HUD Scene Suite, HUD Safe No-Op API Compatibility Test, Clean Immersive HUD Verification
 
+### Community 61 - "DAFTAR_ASET_1daa5a22.md"
+Cohesion: 0.25
+Nodes (7): 1. Background, 2. Objek / Sprite, 3. Button, 4. Font, 5. Audio, 6. Ringkasan Ukuran, 7. Catatan Penting
+
 ## Knowledge Gaps
-- **59 isolated node(s):** `GameOver (Control)`, `Global (Node Autoload)`, `HUD (CanvasLayer)`, `Level1.wrong_order_count`, `Level2 (Node2D Kondensasi)` (+54 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 110 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **59 isolated node(s):** `Implicit CT Assessment & Evaluation Metric`, `ADDIE Instructional Development Model`, `Target Audience: SD Fase C Elementary Students`, `Hydrological Water Cycle Educational Curriculum`, `Daftar Aset: Button 3 Versi` (+54 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 117 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **43 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Global.play_sfx()` connect `CT Pillars & Evaluation Tracking` to `Audio System & BGM Architecture`, `Score & Game State Management`, `Level 4 Drag & Drop Mechanics`?**
-  _High betweenness centrality (0.086) - this node is a cross-community bridge._
+  _High betweenness centrality (0.079) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `Global.play_sfx()` (e.g. with `Daftar Aset: Audio BGM & SFX` and `Full Audio & BGM Architecture`) actually correct?**
   _`Global.play_sfx()` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `GameOver (Control)`, `Global (Node Autoload)`, `HUD (CanvasLayer)` to the rest of the system?**
+- **What connects `Implicit CT Assessment & Evaluation Metric`, `ADDIE Instructional Development Model`, `Target Audience: SD Fase C Elementary Students` to the rest of the system?**
   _59 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `CT Pillars & Evaluation Tracking` be split into smaller, more focused modules?**
   _Cohesion score 0.12 - nodes in this community are weakly interconnected._
 - **Why does `Global.play_bgm()` connect `Audio System & BGM Architecture` to `CT Pillars & Evaluation Tracking`, `Educational Slides & Materi Navigation`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
+  _High betweenness centrality (0.048) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `Global.play_bgm()` (e.g. with `Daftar Aset: Audio BGM & SFX` and `Full Audio & BGM Architecture`) actually correct?**
   _`Global.play_bgm()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Why does `Global.complete_level()` connect `CT Pillars & Evaluation Tracking` to `Level Progression & Unlock Architecture`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._

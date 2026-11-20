@@ -33,16 +33,21 @@ var tweens: Dictionary = {}
 
 var sun_pulse_tween: Tween = null
 var pulse_time: float = 0.0
+var panel_shake_tween: Tween = null
+var panel_suhu_initial_pos: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	Global.play_bgm("musik_level")
 	Global.current_level = 1
 	hud.update_hud()
-	hud.set_help_instruction("Air butuh waktu siang dan suhu panas agar bisa menguap. Ubah ke siang hari lalu naikkan suhu!")
+	hud.set_help_instruction("Misi Dekomposisi: Temukan kombinasi kondisi alam yang tepat agar air laut & pohon bisa menguap!")
 	
 	progress_bar.value = 0.0
-	panel_suhu_card.visible = false
-	panel_suhu_card.modulate.a = 0.0
+	panel_suhu_card.visible = true
+	panel_suhu_card.modulate.a = 1.0
+	btn_transisi_siang.visible = true
+	btn_transisi_siang.modulate.a = 1.0
+	panel_suhu_initial_pos = panel_suhu_card.position
 	
 	var orig_fill = slider_suhu.get_theme_stylebox("grabber_area")
 	if orig_fill is StyleBoxFlat:
@@ -100,10 +105,14 @@ func _process(delta: float) -> void:
 		uap_pohon.emitting = false
 		
 		if not is_daytime:
-			lbl_status.text = "Malam hari: Suhu dingin, belum ada penguapan air."
-			lbl_status.modulate = Color(0.8, 0.9, 1.0)
+			if suhu >= 45.0:
+				lbl_status.text = "Suhu dinaikkan, tapi matahari malam belum bersinar. Dekomposisi belum lengkap: butuh waktu siang!"
+				lbl_status.modulate = Color(1.0, 0.4, 0.4)
+			else:
+				lbl_status.text = "Malam hari: Suhu dingin, belum ada penguapan air."
+				lbl_status.modulate = Color(0.8, 0.9, 1.0)
 		elif suhu < 45.0:
-			lbl_status.text = "Sudah siang, tapi suhu belum cukup panas (geser slider ke >= 45°C)!"
+			lbl_status.text = "Hari sudah siang, tapi suhu belum cukup panas (geser slider ke >= 45°C)!"
 			lbl_status.modulate = Color(1.0, 0.8, 0.2)
 
 func _setup_button_animations(btn: TextureButton) -> void:
@@ -161,6 +170,20 @@ func _update_suhu_label(val: float) -> void:
 		category = " (Terik 🔥 / Panas)"
 	lbl_suhu_val.text = str(int(val)) + " °C" + category
 
+func _shake_panel(panel: Control) -> void:
+	if panel_suhu_initial_pos == Vector2.ZERO:
+		panel_suhu_initial_pos = panel.position
+	if panel_shake_tween and panel_shake_tween.is_running():
+		panel_shake_tween.kill()
+		panel.position = panel_suhu_initial_pos
+	
+	panel_shake_tween = create_tween()
+	var shake_offset = 8.0
+	panel_shake_tween.tween_property(panel, "position:x", panel_suhu_initial_pos.x - shake_offset, 0.04)
+	panel_shake_tween.tween_property(panel, "position:x", panel_suhu_initial_pos.x + shake_offset, 0.04)
+	panel_shake_tween.tween_property(panel, "position:x", panel_suhu_initial_pos.x - shake_offset * 0.5, 0.04)
+	panel_shake_tween.tween_property(panel, "position:x", panel_suhu_initial_pos.x, 0.04)
+
 func _on_slider_suhu_value_changed(value: float) -> void:
 	_update_suhu_label(value)
 	
@@ -168,8 +191,12 @@ func _on_slider_suhu_value_changed(value: float) -> void:
 	if not is_daytime and value >= 45.0 and not level_completed:
 		wrong_order_count += 1
 		Global.play_sfx("gagal")
-		lbl_status.text = "Perhatikan kondisi alam: Malam hari dingin, matahari belum bersinar!"
+		lbl_status.text = "Suhu dinaikkan, tapi matahari malam belum bersinar. Dekomposisi belum lengkap: butuh waktu siang!"
 		lbl_status.modulate = Color(1.0, 0.4, 0.4)
+		_shake_panel(panel_suhu_card)
+	elif is_daytime and value < 45.0:
+		lbl_status.text = "Hari sudah siang, tapi suhu belum cukup panas (geser slider ke >= 45°C)!"
+		lbl_status.modulate = Color(1.0, 0.8, 0.2)
 
 func _on_btn_transisi_siang_pressed() -> void:
 	if is_daytime:
@@ -177,6 +204,12 @@ func _on_btn_transisi_siang_pressed() -> void:
 	is_daytime = true
 	Global.play_sfx("klik")
 	Global.play_sfx("siang")
+	
+	if slider_suhu.value >= 45.0:
+		uap_laut.emitting = true
+		uap_pohon.emitting = true
+		lbl_status.text = "Suhu panas! Air laut menguap (Evaporasi) & pohon berkeringat (Transpirasi)!"
+		lbl_status.modulate = Color(0.3, 1.0, 0.4)
 	
 	# Transisi halus ke siang hari
 	var t = create_tween().set_parallel(true)
@@ -192,12 +225,9 @@ func _on_btn_transisi_siang_pressed() -> void:
 	
 	panduan_siang.visible = true
 	panduan_siang.modulate.a = 0.0
-	panel_suhu_card.visible = true
-	panel_suhu_card.modulate.a = 0.0
 	
-	var t2 = create_tween().set_parallel(true)
+	var t2 = create_tween()
 	t2.tween_property(panduan_siang, "modulate:a", 1.0, 0.6)
-	t2.tween_property(panel_suhu_card, "modulate:a", 1.0, 0.6)
 
 func _on_evaporation_completed() -> void:
 	level_completed = true

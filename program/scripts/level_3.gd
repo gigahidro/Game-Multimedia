@@ -20,12 +20,13 @@ var level_completed: bool = false
 var abstraction_errors: int = 0
 var tweens: Dictionary = {}
 var base_cloud_scale: Vector2 = Vector2(0.58, 0.58)
+var distractor_data: Array[Dictionary] = []
 
 func _ready() -> void:
 	Global.play_bgm("musik_level")
 	Global.current_level = 3
 	hud.update_hud()
-	hud.set_help_instruction("Abaikan benda lain seperti daun dan layangan. Klik HANYA tetesan air murni agar awan jenuh dan turun hujan!")
+	hud.set_help_instruction("Pilah fokus (Abstraksi): Awan hanya menyerap molekul air murni (H2O). Kumpulkan tetesan air dan abaikan noise/benda asing yang melayang di langit!")
 	
 	btn_next.visible = false
 	if rain_node:
@@ -43,7 +44,51 @@ func _ready() -> void:
 	lbl_status.set("theme_override_colors/font_color", Color(0.15, 0.3, 0.52, 1))
 	
 	_setup_button_animations(btn_next)
+	_init_distractor_drift()
 	_update_collected_ui()
+
+func _init_distractor_drift() -> void:
+	distractor_data.clear()
+	var d_configs = [
+		{"name": "DistractorLeaf1", "speed": 1.1, "amp_x": 35.0, "amp_y": 14.0, "rot_amp": 0.18, "phase": 0.0},
+		{"name": "DistractorLeaf2", "speed": 0.85, "amp_x": 42.0, "amp_y": 16.0, "rot_amp": 0.14, "phase": 2.1},
+		{"name": "DistractorKite", "speed": 0.65, "amp_x": 55.0, "amp_y": 20.0, "rot_amp": 0.09, "phase": 4.2}
+	]
+	for cfg in d_configs:
+		var node = items_container.get_node_or_null(cfg["name"]) as Area2D
+		if node:
+			distractor_data.append({
+				"node": node,
+				"base_x": node.position.x,
+				"base_y": node.position.y,
+				"base_rot": node.rotation,
+				"speed": cfg["speed"],
+				"amp_x": cfg["amp_x"],
+				"amp_y": cfg["amp_y"],
+				"rot_amp": cfg["rot_amp"],
+				"phase": cfg["phase"]
+			})
+
+func _process(_delta: float) -> void:
+	if level_completed:
+		return
+	var time = Time.get_ticks_msec() / 1000.0
+	for d in distractor_data:
+		var node = d["node"]
+		if is_instance_valid(node) and not node.is_being_collected:
+			if "shake_tween" in node and node.shake_tween and node.shake_tween.is_running():
+				continue
+			var t_val = time * d["speed"] + d["phase"]
+			var cur_x = d["base_x"] + sin(t_val) * d["amp_x"]
+			var cur_y = d["base_y"] + cos(t_val * 0.8) * d["amp_y"]
+			node.position.x = cur_x
+			if "initial_x" in node:
+				node.initial_x = cur_x
+			if "initial_y" in node:
+				node.initial_y = cur_y
+			else:
+				node.position.y = cur_y
+			node.rotation = d["base_rot"] + sin(t_val * 1.2) * d["rot_amp"]
 
 func _update_collected_ui() -> void:
 	lbl_collected.text = "Uap Air: " + str(collected_droplets) + " / " + str(TARGET_DROPLETS)
@@ -108,7 +153,7 @@ func hit_distractor(item_node: Node) -> void:
 	Global.play_sfx("gagal")
 	abstraction_errors += 1
 	var item_title = item_node.item_name if "item_name" in item_node else "Pengecoh"
-	lbl_status.text = "Itu pengecoh (" + item_title + ")! Abaikan, pilih tetesan air murni."
+	lbl_status.text = "Itu bukan air murni (" + item_title + ")! Abstraksikan: abaikan noise benda terbang ini."
 	lbl_status.modulate = Color.WHITE
 	lbl_status.set("theme_override_colors/font_color", Color(0.85, 0.2, 0.2, 1.0))
 	

@@ -33,7 +33,7 @@ func _ready() -> void:
 	Global.play_bgm("musik_level")
 	Global.current_level = 4
 	hud.update_hud()
-	hud.set_help_instruction("Tarik (drag & drop) gambar tahapan siklus air ke kotak Tahap 1 sampai 4 secara berurutan!")
+	hud.set_help_instruction("Susun algoritma urutan siklus air: Tempatkan 4 tahapan dari penyebab awal hingga proses peresapan kembali!")
 	
 	btn_next.visible = false
 	btn_next.modulate.a = 0.0
@@ -298,13 +298,35 @@ func _on_btn_check_pressed() -> void:
 		bt.tween_property(btn_next, "scale", Vector2.ONE, 0.15)
 	else:
 		wrong_attempts += 1
-		lbl_feedback.text = "Urutan belum tepat! Coba ingat kembali aliran siklus air."
-		lbl_feedback.modulate = Color(0.85, 0.18, 0.18)
-		_shake_slots()
 		Global.play_sfx("gagal")
+		_shake_slots()
+		lbl_feedback.modulate = Color(0.85, 0.18, 0.18)
+		
+		# Intelligent Algorithmic Debugging Feedback
+		if slot_cards[0] != "Evaporasi":
+			if slot_cards[0] == "Kondensasi":
+				lbl_feedback.text = "Bug Logika: Bagaimana awan bisa terbentuk (Kondensasi) jika air laut belum menguap?"
+			elif slot_cards[0] == "Presipitasi":
+				lbl_feedback.text = "Bug Logika: Hujan (Presipitasi) tidak bisa turun di awal sebelum ada awan!"
+			elif slot_cards[0] == "Infiltrasi":
+				lbl_feedback.text = "Bug Logika: Air tidak bisa meresap ke tanah (Infiltrasi) jika hujan belum turun!"
+			else:
+				lbl_feedback.text = "Algoritma harus dimulai dari tahap pertama: penguapan air oleh energi matahari!"
+		elif slot_cards[1] != "Kondensasi":
+			if slot_cards[1] == "Presipitasi":
+				lbl_feedback.text = "Urutan terlewati: Uap air harus berkumpul jadi awan (Kondensasi) dulu sebelum turun hujan!"
+			else:
+				lbl_feedback.text = "Setelah air menguap, apa yang terjadi pada uap air saat naik ke atmosfer yang dingin?"
+		elif slot_cards[2] != "Presipitasi":
+			if slot_cards[2] == "Infiltrasi":
+				lbl_feedback.text = "Langkah terbalik: Air harus jatuh sebagai hujan (Presipitasi) sebelum bisa meresap ke tanah (Infiltrasi)!"
+			else:
+				lbl_feedback.text = "Setelah awan tebal terbentuk dan jenuh, proses apa yang membuat air jatuh kembali ke bumi?"
+		else:
+			lbl_feedback.text = "Tahap terakhir: Ke mana air hujan mengalir dan meresap kembali ke dalam tanah?"
 		
 		# Jeda sebentar lalu reset kartu agar siswa dapat mencoba kembali
-		await get_tree().create_timer(0.75).timeout
+		await get_tree().create_timer(0.8).timeout
 		if not level_completed:
 			_on_btn_reset_pressed()
 
